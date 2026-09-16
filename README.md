@@ -20,6 +20,8 @@ Este repositorio es el núcleo web de ALVA: sitio público, catálogo de solucio
 - `crm.alvasd.com` → CRM.
 - futuros productos → subdominios independientes.
 
+Actualmente el despliegue público está en Cloudflare Pages y `/admin/` ya utiliza datos reales.
+
 ## Identidad visual
 
 - Grafito principal: `#4B4B4D`
@@ -33,18 +35,20 @@ Este repositorio es el núcleo web de ALVA: sitio público, catálogo de solucio
 
 ## Fase actual
 
-**Fase 2 — Núcleo administrativo.**
+**Fase 2 — Núcleo administrativo operativo / en refinamiento.**
 
-Objetivos inmediatos:
-- autenticación de administradores;
-- base central de empresas/clientes;
-- catálogo maestro de productos y servicios;
-- usuarios internos, roles y permisos;
-- auditoría básica;
-- Row Level Security desde la primera migración.
+Ya están conectados:
+- Supabase Auth;
+- cuenta propietaria de ALVA;
+- empresas/clientes;
+- catálogo maestro de productos;
+- usuarios, roles y permisos;
+- auditoría;
+- Row Level Security.
 
-La migración inicial está preparada en:
+### Supabase
+Para optimizar costos en la etapa inicial, ALVA Core comparte el proyecto **CyA Asesor Digital**, manteniendo una separación lógica estricta mediante tablas `alva_*` y helpers privados.
 
-`supabase/migrations/001_phase2_core.sql`
+La cuenta propietaria inicial es `jean.maxx@gmail.com` con rol **Propietario**.
 
-> Estado de infraestructura: la creación del proyecto Supabase independiente `ALVA Soluciones Digitales` está pendiente porque la organización alcanzó el límite de dos proyectos gratuitos activos. Ver `docs/PHASE2.md`.
+Consulta `docs/PHASE2.md` para el detalle técnico y `docs/ROADMAP.md` para las siguientes fases.
