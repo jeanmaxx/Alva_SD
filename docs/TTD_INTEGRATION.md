@@ -11,9 +11,13 @@ TTD es el primer producto conectado al control central de ALVA sin duplicar su p
 ALVA Core y TTD usan el mismo proyecto Supabase durante la etapa inicial (`lliedfgeegkqeopxvtze`). La información sigue separada por tablas y RLS.
 
 ## Acceso unificado
-El propietario usa la misma identidad de Supabase en ALVA Admin y TTD Admin. El botón **Administrar TTD** abre el panel TTD y realiza un handoff de sesión entre los dos orígenes mediante `postMessage` con validación estricta de origen. La contraseña no se transmite ni se almacena en ALVA.
+El propietario usa la misma identidad de Supabase en ALVA Admin y TTD Admin.
 
-TTD vuelve a comprobar `is_super_admin()` antes de aceptar el acceso administrativo.
+El botón **Administrar TTD** utiliza la Edge Function `alva-ttd-sso`. La función exige un JWT válido, origen ALVA autorizado, perfil ALVA activo con rol **Propietario** y rol TTD `super_admin`. Después genera un token de correo de un solo uso para la misma cuenta.
+
+ALVA abre TTD con ese token en el fragmento de la URL. TTD lo consume con `verifyOtp()`, elimina inmediatamente el fragmento de la barra del navegador y vuelve a validar `is_super_admin()`.
+
+La contraseña y el refresh token de la sesión de ALVA **no se comparten entre dominios**.
 
 ## URLs registradas
 - Página comercial TTD: `https://ttd-alvasd.pages.dev/otros/?negocio=tu-tarjeta-digital`
