@@ -16,7 +16,7 @@ window.ALVA_SUPABASE = {
   };
 
   addCss('./phase3plus.css?v=20260916-1', 'alva-phase3plus-css');
-  addCss('./ttd-integration.css?v=20260916-1', 'alva-ttd-integration-css');
+  addCss('./ttd-integration.css?v=20260916-2', 'alva-ttd-integration-css');
 
   window.addEventListener('load', () => {
     const loadScript = (src, id) => new Promise(resolve => {
@@ -30,6 +30,6 @@ window.ALVA_SUPABASE = {
     });
 
     loadScript('./phase3plus.js?v=20260916-1', 'alva-phase3plus-js')
-      .then(() => loadScript('./ttd-integration.js?v=20260916-1', 'alva-ttd-integration-js'));
+      .then(() => loadScript('./ttd-integration.js?v=20260916-2', 'alva-ttd-integration-js'));
   }, { once: true });
 })();
