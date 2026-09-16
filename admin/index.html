@@ -1,10 +1,16 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#f7f7f5" />
+  <meta name="color-scheme" content="light dark" />
   <title>ALVA Admin</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/brand/isotipo-color.svg" />
+  <script>
+    (()=>{try{const saved=localStorage.getItem('alva-theme');const theme=saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=theme;}catch(_){}})();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,9 +19,9 @@
 <body>
   <div class="admin-shell">
     <aside class="sidebar">
-      <a class="admin-brand" href="../">
-        <img src="../assets/alva-mark.svg" alt="" />
-        <span><strong>ALVA</strong><small>Administración</small></span>
+      <a class="admin-brand" href="../" aria-label="ALVA Soluciones Digitales">
+        <img src="../assets/brand/isotipo-color-dark.svg" alt="" />
+        <span><img src="../assets/brand/logotipo.svg" alt="ALVA" /><small>Control central</small></span>
       </a>
       <nav class="side-nav" aria-label="Administración">
         <button class="nav-item active" data-view="dashboard">Dashboard</button>
@@ -36,8 +42,8 @@
     <main class="admin-main">
       <header class="admin-topbar">
         <button class="sidebar-toggle" aria-label="Abrir menú">☰</button>
-        <div><p class="top-kicker">ALVA SOLUCIONES DIGITALES</p><h1 id="page-title">Dashboard</h1></div>
-        <div class="top-actions"><a href="../" class="ghost-link">Ver sitio</a><button class="avatar" title="Administrador">EA</button></div>
+        <div class="title-block"><p class="top-kicker">ALVA SOLUCIONES DIGITALES</p><h1 id="page-title">Dashboard</h1></div>
+        <div class="top-actions"><a href="../" class="ghost-link">Ver sitio</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema"><span aria-hidden="true">◐</span></button><button class="avatar" title="Administrador">EA</button></div>
       </header>
 
       <section class="phase-banner">
@@ -82,6 +88,7 @@
       <section id="settings" class="view"><div class="section-card"><span class="eyebrow">SISTEMA</span><h2>Configuración</h2><p>Parámetros generales, usuarios internos, permisos y auditoría del ecosistema ALVA.</p><div class="empty-state">Configuración avanzada disponible en fases posteriores.</div></div></section>
     </main>
   </div>
+  <script src="../assets/theme.js"></script>
   <script src="./admin.js"></script>
 </body>
 </html>
