@@ -4,15 +4,29 @@
   const freqLabel={monthly:'Mensual',annual:'Anual',quarterly:'Trimestral',semiannual:'Semestral',one_time:'Pago único',custom:'Personalizada'};
   const money=(v,c='MXN')=>new Intl.NumberFormat('es-MX',{style:'currency',currency:c||'MXN'}).format(Number(v||0));
   const esc=v=>String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+  async function waitForState(timeoutMs=12000){
+    const started=Date.now();
+    while(Date.now()-started<timeoutMs){
+      if(typeof state!=='undefined'&&state.db&&state.user)return true;
+      await sleep(120);
+    }
+    return false;
+  }
 
   async function loadCommercial(){
-    if(typeof state==='undefined'||!state.db||!state.user)return false;
+    if(!await waitForState())return false;
     const [c,p,s,pl]=await Promise.all([
       state.db.from('alva_commercial_conditions').select('*').eq('status','active').order('sort_order'),
       state.db.from('alva_plan_prices').select('*').eq('status','active').order('billing_frequency'),
       state.db.from('alva_subscriptions').select('id,commercial_condition_id,plan_id,billing_frequency,contracted_price,company_id,product_id,status').order('updated_at',{ascending:false}),
       state.db.from('alva_product_plans').select('id,product_id,code,name,status,billing_frequency,price,currency').order('sort_order')
     ]);
+    if(c.error||p.error||s.error||pl.error){
+      console.error('ALVA commercial-v2: error al cargar catálogo comercial',c.error||p.error||s.error||pl.error);
+      return false;
+    }
     cm.conditions=c.data||[];cm.prices=p.data||[];cm.subscriptions=s.data||[];cm.plans=pl.data||[];
     return true;
   }
@@ -44,8 +58,15 @@
 
   function fillConditions(selected=''){
     const select=document.querySelector('#subscription-condition');if(!select)return;
+    if(!cm.conditions.length){
+      select.innerHTML='<option value="">Cargando condiciones…</option>';
+      select.value='';
+      return;
+    }
     select.innerHTML=cm.conditions.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('');
-    select.value=selected||normalCondition()?.id||cm.conditions[0]?.id||'';
+    const target=selected||normalCondition()?.id||cm.conditions[0]?.id||'';
+    select.value=target;
+    if(!select.value&&cm.conditions[0])select.value=cm.conditions[0].id;
   }
 
   function syncCommercialFields(overwritePrice=false){
@@ -59,7 +80,7 @@
       else if(p)priceInput.value=Number(p.price).toFixed(2);
     }
     const conditionNote=document.querySelector('#subscription-condition-note');
-    if(conditionNote)conditionNote.textContent=c?.forces_zero_price?'Esta condición establece precio contratado en $0.00.':c?.enables_cross_promotion?'Incluye promoción cruzada TTD.':'';
+    if(conditionNote)conditionNote.textContent=c?.enables_cross_promotion?'Incluye promoción cruzada TTD.':c?.forces_zero_price?'Esta condición establece precio contratado en $0.00.':'';
     const activation=document.querySelector('#subscription-activation-note');
     if(activation){
       if(!p)activation.textContent='';
@@ -69,10 +90,16 @@
     }
   }
 
-  function populateSubscriptionDialog(){
+  async function populateSubscriptionDialog(){
     const dialog=document.querySelector('#subscription-dialog');if(!dialog?.open)return;
+    if(!cm.conditions.length)await loadCommercial();
+    ensureConditionField();
     const id=document.querySelector('#subscription-id')?.value||'';
-    const sub=cm.subscriptions.find(x=>x.id===id);
+    let sub=cm.subscriptions.find(x=>x.id===id);
+    if(id&&!sub&&await waitForState()){
+      const {data}=await state.db.from('alva_subscriptions').select('id,commercial_condition_id,plan_id,billing_frequency,contracted_price,company_id,product_id,status').eq('id',id).maybeSingle();
+      if(data){cm.subscriptions=[data,...cm.subscriptions.filter(x=>x.id!==id)];sub=data;}
+    }
     fillConditions(sub?.commercial_condition_id||normalCondition()?.id||'');
     syncCommercialFields(!sub);
   }
@@ -108,19 +135,24 @@
   }
 
   async function refreshDecorations(){
-    await loadCommercial();ensureConditionField();renderConditionsLegend();decorateSubscriptions();decoratePlans();
+    const ok=await loadCommercial();ensureConditionField();
+    if(!ok)return false;
+    renderConditionsLegend();decorateSubscriptions();decoratePlans();
+    if(document.querySelector('#subscription-dialog')?.open)await populateSubscriptionDialog();
+    return true;
   }
 
   function installObservers(){
     const subTable=document.querySelector('#subscriptions-table');if(subTable)new MutationObserver(()=>decorateSubscriptions()).observe(subTable,{childList:true,subtree:true});
     const plans=document.querySelector('#plans-strip');if(plans)new MutationObserver(()=>decoratePlans()).observe(plans,{childList:true,subtree:true});
-    const dialog=document.querySelector('#subscription-dialog');if(dialog)new MutationObserver(()=>{if(dialog.open)setTimeout(populateSubscriptionDialog,0)}).observe(dialog,{attributes:true,attributeFilter:['open']});
+    const dialog=document.querySelector('#subscription-dialog');if(dialog)new MutationObserver(()=>{if(dialog.open)setTimeout(()=>populateSubscriptionDialog(),0)}).observe(dialog,{attributes:true,attributeFilter:['open']});
   }
 
   function installSaveOverride(){
     const form=document.querySelector('#subscription-form');if(!form||form.dataset.commercialV2)return;form.dataset.commercialV2='1';
     form.addEventListener('submit',async e=>{
       e.preventDefault();e.stopImmediatePropagation();
+      if(!cm.conditions.length&&!await loadCommercial()){toast('No se pudo cargar el catálogo comercial.',true);return;}
       const id=document.querySelector('#subscription-id').value;
       const status=document.querySelector('#subscription-status').value;
       const existing=cm.subscriptions.find(x=>x.id===id);
@@ -158,10 +190,12 @@
 
   async function boot(){
     ensureAssets();
-    for(let i=0;i<30&&!document.querySelector('#subscription-form');i++)await new Promise(r=>setTimeout(r,100));
+    for(let i=0;i<100&&!document.querySelector('#subscription-form');i++)await sleep(100);
     if(!document.querySelector('#subscription-form'))return;
-    await refreshDecorations();installObservers();installSaveOverride();
-    document.querySelector('#new-subscription')?.addEventListener('click',()=>setTimeout(populateSubscriptionDialog,0));
+    ensureConditionField();installObservers();installSaveOverride();
+    await refreshDecorations();
+    document.querySelector('#new-subscription')?.addEventListener('click',()=>setTimeout(()=>populateSubscriptionDialog(),0));
+    window.addEventListener('focus',()=>{if(!cm.conditions.length)refreshDecorations();});
   }
   boot();
 })();
