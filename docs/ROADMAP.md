@@ -19,7 +19,7 @@
 - 🔄 Refinamiento visual, validaciones y flujos de administración.
 
 ### Infraestructura actual
-ALVA Core comparte temporalmente el proyecto Supabase **CyA Asesor Digital**. Toda la información administrativa de ALVA está aislada mediante tablas `alva_*`, RLS y helpers privados.
+ALVA Core comparte temporalmente el proyecto Supabase **CyA Asesor Digital / TTD**. Toda la información administrativa de ALVA está aislada mediante tablas `alva_*`, RLS y helpers privados.
 
 Esta arquitectura es deliberadamente económica para la etapa inicial y queda preparada para migrarse a un proyecto independiente cuando el volumen de clientes o ingresos lo justifique.
 
@@ -30,8 +30,19 @@ Esta arquitectura es deliberadamente económica para la etapa inicial y queda pr
 - ✅ Vigencia, renovación y fecha final.
 - ✅ Límite de usuarios/licencias como dato comercial central.
 - ✅ Estados: prueba, activo, pausado, cancelado y vencido.
-- ✅ Vínculo opcional con tenant/ID externo y URL de acceso.
+- ✅ Vínculo con cuenta/tenant externo y URL de acceso.
+- ✅ **TTD es el primer producto conectado:** cuentas reales enlazadas mediante `alva_product_accounts`.
+- ✅ Planes TTD reflejados: Básico, Pro, Premium y Publicidad cruzada.
 - 🔄 Automatización futura de altas/bajas dentro de cada producto.
+
+### Primera integración real — TTD
+- ✅ Página comercial, panel administrativo, repositorio y Supabase registrados en ALVA.
+- ✅ Emmanuel Álvarez enlazado como cliente interno/laboratorio.
+- ✅ Patrimonio Qro enlazado como cuenta TTD en prueba.
+- ✅ Studio Cavalier enlazado como cliente activo de cortesía.
+- ✅ Studio Cavalier asignado al paquete técnico/comercial `cross_promo`.
+- ✅ Acceso **Administrar TTD** desde ALVA con handoff de sesión entre ambos paneles y validación de administrador principal en TTD.
+- 🔄 Sincronización automática bidireccional de estados/planes queda para una iteración posterior.
 
 ## Fase 4 — Comercial y cobranza ✅ PRIMERA VERSIÓN OPERATIVA
 - ✅ Cargos/facturas administrativas con folio ALVA.
@@ -63,12 +74,15 @@ Esta arquitectura es deliberadamente económica para la etapa inicial y queda pr
 - ✅ Registro de entornos por producto: producción, staging y desarrollo.
 - ✅ URLs de aplicación/administración, repositorio y referencia de Supabase.
 - ✅ Modelo central preparado para incorporar nuevos productos sin rediseñar ALVA Admin.
+- ✅ Patrón de integración validado con TTD: ALVA administra negocio; el producto conserva su operación.
 - ⏸ Incorporación funcional del Producto 03 cuando queden definidos nombre, propósito e integración.
 - 🔄 Métricas consolidadas crecerán conforme exista información real.
 
-## Pendientes visuales no bloqueantes
+## Pendientes no bloqueantes
 - Crear favicon ALVA con fondo/círculo claro para evitar pérdida de contraste.
 - Revisar favicon/logo blanco del CRM cuando retomemos ese producto.
+- TTD Publicidad cruzada: renderizar CTA flotante **¿Quieres una tarjeta digital?** con logo TTD.
+- TTD Publicidad cruzada: añadir parámetro/referral de origen y medición de clic para atribución comercial.
 
 ## Principio arquitectónico
 
