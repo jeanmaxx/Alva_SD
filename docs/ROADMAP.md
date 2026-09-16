@@ -8,17 +8,20 @@
 - Tema claro / oscuro.
 - Publicación continua en Cloudflare Pages.
 
-## Fase 2 — Núcleo administrativo 🚧 EN CURSO
-- Autenticación de administradores.
-- Base central de empresas/clientes.
-- Catálogo maestro de productos y servicios.
-- Usuarios internos, roles y permisos.
-- Auditoría básica.
-- RLS desde la primera migración.
+## Fase 2 — Núcleo administrativo 🚧 OPERATIVA / EN REFINAMIENTO
+- ✅ Autenticación de administradores con Supabase Auth.
+- ✅ Base central de empresas/clientes.
+- ✅ Catálogo maestro de productos y servicios.
+- ✅ Usuario propietario y modelo de roles/permisos.
+- ✅ Auditoría automática.
+- ✅ Row Level Security.
+- ✅ Integración real del panel `/admin/` con Supabase.
+- 🔄 Refinamiento visual, validaciones y flujos de administración.
 
-Migración preparada: `supabase/migrations/001_phase2_core.sql`.
+### Infraestructura actual
+ALVA Core comparte temporalmente el proyecto Supabase **CyA Asesor Digital**. Toda la información administrativa de ALVA está aislada mediante tablas `alva_*` y helpers privados.
 
-Estado de infraestructura: la creación del proyecto Supabase independiente `ALVA Soluciones Digitales` está pendiente por el límite de dos proyectos gratuitos activos de la organización. No se reutilizará una base de otro producto sin decisión explícita.
+Esta arquitectura es deliberadamente económica para la etapa inicial y queda preparada para migrarse a un proyecto independiente cuando el volumen de clientes o ingresos lo justifique.
 
 ## Fase 3 — Suscripciones y licencias
 - Relación cliente-producto.
@@ -51,6 +54,10 @@ Estado de infraestructura: la creación del proyecto Supabase independiente `ALV
 - Plantilla estándar para nuevos productos ALVA.
 - Subdominios independientes.
 - Métricas consolidadas del ecosistema.
+
+## Pendientes visuales no bloqueantes
+- Crear favicon ALVA con fondo/círculo claro para evitar pérdida de contraste.
+- Revisar favicon/logo blanco del CRM cuando retomemos ese producto.
 
 ## Principio arquitectónico
 
