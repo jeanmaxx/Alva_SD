@@ -121,3 +121,13 @@ begin
   values(p_account_type,v_account_id,p_event_type,left(nullif(trim(p_source),''),40),p_session_id,coalesce(p_metadata,'{}'::jsonb));
 end;
 $$;
+
+alter table public.card_events drop constraint if exists card_events_event_type_check;
+alter table public.card_events add constraint card_events_event_type_check check (
+  event_type = any (array[
+    'page_view'::text,'whatsapp_click'::text,'call_click'::text,'instagram_click'::text,
+    'facebook_click'::text,'service_click'::text,'vcard_download'::text,'share_click'::text,
+    'qr_download'::text,'booking_click'::text,'map_click'::text,'review_click'::text,
+    'cross_promo_click'::text
+  ])
+);
