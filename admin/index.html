@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>ALVA Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./admin.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="sidebar">
+      <a class="admin-brand" href="../">
+        <img src="../assets/alva-mark.svg" alt="" />
+        <span><strong>ALVA</strong><small>Administración</small></span>
+      </a>
+      <nav class="side-nav" aria-label="Administración">
+        <button class="nav-item active" data-view="dashboard">Dashboard</button>
+        <button class="nav-item" data-view="clients">Clientes / Empresas</button>
+        <button class="nav-item" data-view="products">Productos y servicios</button>
+        <button class="nav-item" data-view="subscriptions">Suscripciones / Licencias</button>
+        <button class="nav-item" data-view="users">Usuarios y accesos</button>
+        <button class="nav-item" data-view="billing">Cobranza</button>
+        <button class="nav-item" data-view="support">Soporte</button>
+        <button class="nav-item" data-view="settings">Configuración</button>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="status-dot"></span>
+        <div><strong>Fase 1</strong><small>Interfaz demostrativa</small></div>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <button class="sidebar-toggle" aria-label="Abrir menú">☰</button>
+        <div><p class="top-kicker">ALVA SOLUCIONES DIGITALES</p><h1 id="page-title">Dashboard</h1></div>
+        <div class="top-actions"><a href="../" class="ghost-link">Ver sitio</a><button class="avatar" title="Administrador">EA</button></div>
+      </header>
+
+      <section class="phase-banner">
+        <div><strong>Vista de estructura — sin datos reales</strong><span>La autenticación, Supabase y los permisos se conectarán en la siguiente fase.</span></div>
+        <span class="phase-tag">DEMO</span>
+      </section>
+
+      <section id="dashboard" class="view active">
+        <div class="metric-grid">
+          <article class="metric-card"><span>Clientes activos</span><strong>—</strong><small>Se conectará a Supabase</small></article>
+          <article class="metric-card"><span>Productos activos</span><strong>2</strong><small>TTD + CRM</small></article>
+          <article class="metric-card"><span>Licencias vigentes</span><strong>—</strong><small>Próxima fase</small></article>
+          <article class="metric-card accent"><span>Próximo producto</span><strong>03</strong><small>Arquitectura reservada</small></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel products-panel">
+            <div class="panel-head"><div><span class="eyebrow">ECOSISTEMA</span><h2>Productos ALVA</h2></div><button class="small-button" data-go="products">Administrar</button></div>
+            <div class="product-row"><span class="product-icon">T</span><div><strong>TTD</strong><small>Producto activo</small></div><span class="badge green">Activo</span></div>
+            <div class="product-row"><span class="product-icon dark">C</span><div><strong>CRM</strong><small>Gestión empresarial</small></div><span class="badge green">Activo</span></div>
+            <div class="product-row muted"><span class="product-icon outline">03</span><div><strong>Nueva plataforma</strong><small>Reservada para desarrollo</small></div><span class="badge">Pendiente</span></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head"><div><span class="eyebrow">OPERACIÓN</span><h2>Próximas tareas</h2></div></div>
+            <ol class="task-list">
+              <li><b>01</b><span>Conectar autenticación de administradores.</span></li>
+              <li><b>02</b><span>Crear modelo central de empresas y productos.</span></li>
+              <li><b>03</b><span>Registrar TTD y CRM como servicios administrables.</span></li>
+              <li><b>04</b><span>Activar licencias, renovaciones y cobranza.</span></li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section id="clients" class="view"><div class="section-card"><span class="eyebrow">CLIENTES</span><h2>Clientes / Empresas</h2><p>Aquí se concentrará cada empresa, sus contactos, productos contratados, estatus y notas administrativas.</p><div class="empty-state">Sin datos todavía · listo para conectar a Supabase.</div></div></section>
+      <section id="products" class="view"><div class="section-card"><span class="eyebrow">CATÁLOGO</span><h2>Productos y servicios</h2><p>Catálogo maestro para TTD, CRM y futuros productos. Permitirá definir nombre, estado comercial, modalidad, precio base y configuración.</p><div class="mini-grid"><div><b>TTD</b><span>Activo</span></div><div><b>CRM</b><span>Activo</span></div><div class="future"><b>Producto 03</b><span>Reservado</span></div></div></div></section>
+      <section id="subscriptions" class="view"><div class="section-card"><span class="eyebrow">CONTROL</span><h2>Suscripciones / Licencias</h2><p>Relación entre empresa, producto, plan, vigencia, usuarios permitidos, renovación y estado.</p><div class="empty-state">Módulo preparado para la fase de datos.</div></div></section>
+      <section id="users" class="view"><div class="section-card"><span class="eyebrow">ACCESOS</span><h2>Usuarios y accesos</h2><p>Administración de usuarios internos de ALVA y usuarios autorizados por empresa y producto.</p><div class="empty-state">La seguridad real se implementará con autenticación y roles.</div></div></section>
+      <section id="billing" class="view"><div class="section-card"><span class="eyebrow">FINANZAS</span><h2>Cobranza</h2><p>Control de periodicidad, importe contratado, próximo pago, historial y situación de cuenta.</p><div class="empty-state">Sin movimientos reales en esta etapa.</div></div></section>
+      <section id="support" class="view"><div class="section-card"><span class="eyebrow">SERVICIO</span><h2>Soporte</h2><p>Incidencias y solicitudes asociadas a clientes y productos.</p><div class="empty-state">Módulo reservado para implementación.</div></div></section>
+      <section id="settings" class="view"><div class="section-card"><span class="eyebrow">SISTEMA</span><h2>Configuración</h2><p>Parámetros generales, usuarios internos, permisos y auditoría del ecosistema ALVA.</p><div class="empty-state">Configuración avanzada disponible en fases posteriores.</div></div></section>
+    </main>
+  </div>
+  <script src="./admin.js"></script>
+</body>
+</html>
