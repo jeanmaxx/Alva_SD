@@ -8,7 +8,7 @@
 - Tema claro / oscuro.
 - Publicación continua en Cloudflare Pages.
 
-## Fase 2 — Núcleo administrativo 🚧 OPERATIVA / EN REFINAMIENTO
+## Fase 2 — Núcleo administrativo ✅ OPERATIVA / EN REFINAMIENTO
 - ✅ Autenticación de administradores con Supabase Auth.
 - ✅ Base central de empresas/clientes.
 - ✅ Catálogo maestro de productos y servicios.
@@ -19,41 +19,52 @@
 - 🔄 Refinamiento visual, validaciones y flujos de administración.
 
 ### Infraestructura actual
-ALVA Core comparte temporalmente el proyecto Supabase **CyA Asesor Digital**. Toda la información administrativa de ALVA está aislada mediante tablas `alva_*` y helpers privados.
+ALVA Core comparte temporalmente el proyecto Supabase **CyA Asesor Digital**. Toda la información administrativa de ALVA está aislada mediante tablas `alva_*`, RLS y helpers privados.
 
 Esta arquitectura es deliberadamente económica para la etapa inicial y queda preparada para migrarse a un proyecto independiente cuando el volumen de clientes o ingresos lo justifique.
 
-## Fase 3 — Suscripciones y licencias
-- Relación cliente-producto.
-- Plan, vigencia, usuarios permitidos y estado.
-- Renovaciones y suspensiones.
-- Integración progresiva con TTD y CRM.
+## Fase 3 — Suscripciones y licencias ✅ PRIMERA VERSIÓN OPERATIVA
+- ✅ Relación cliente-producto.
+- ✅ Planes por producto.
+- ✅ Precio contratado y periodicidad.
+- ✅ Vigencia, renovación y fecha final.
+- ✅ Límite de usuarios/licencias como dato comercial central.
+- ✅ Estados: prueba, activo, pausado, cancelado y vencido.
+- ✅ Vínculo opcional con tenant/ID externo y URL de acceso.
+- 🔄 Automatización futura de altas/bajas dentro de cada producto.
 
-## Fase 4 — Comercial y cobranza
-- Importes contratados.
-- Periodicidad y próximas fechas de pago.
-- Historial de cobros.
-- Estado de cuenta por cliente.
-- Indicadores de ingresos recurrentes.
+## Fase 4 — Comercial y cobranza ✅ PRIMERA VERSIÓN OPERATIVA
+- ✅ Cargos/facturas administrativas con folio ALVA.
+- ✅ Fechas de emisión y vencimiento.
+- ✅ Subtotal, impuestos y total.
+- ✅ Pagos, método y referencia.
+- ✅ Actualización automática del estado al cubrir el total.
+- ✅ Indicadores de saldo pendiente, vencido y cobrado en el mes.
+- ✅ Privacidad financiera: por defecto solo **Propietario** tiene permisos de cobranza.
+- ⏸ CFDI/facturación fiscal no se implementa todavía.
 
-## Fase 5 — Soporte y operación
-- Tickets/incidencias.
-- Prioridad, producto, cliente y responsable.
-- Historial de atención.
-- Métricas de servicio.
+## Fase 5 — Soporte y operación ✅ PRIMERA VERSIÓN OPERATIVA
+- ✅ Tickets por cliente, producto y suscripción.
+- ✅ Prioridades y estados de atención.
+- ✅ Responsable interno.
+- ✅ Historial de mensajes/notas.
+- ✅ Notas internas diferenciadas.
+- ✅ Indicadores de tickets abiertos, urgentes y en espera.
 
-## Fase 6 — Portal de cliente
-- Inicio de sesión por empresa.
-- Productos contratados.
-- Usuarios/licencias.
-- Estado de servicio y renovaciones.
-- Solicitudes de soporte.
+## Fase 6 — Portal de cliente 🧱 FUNDAMENTO SEGURO PREPARADO
+- ✅ Tabla de membresías por empresa.
+- ✅ Roles futuros de portal.
+- ✅ RLS de la membresía propia.
+- ✅ Gestión reservada a roles administrativos autorizados.
+- 🔒 **No se han abierto políticas de lectura sobre empresas, suscripciones, facturas o tickets a clientes.**
+- ⏸ La interfaz del portal y las invitaciones se activarán cuando exista el primer caso real de cliente que necesite acceso.
 
-## Fase 7 — Expansión multiproducto
-- Incorporación del Producto 03.
-- Plantilla estándar para nuevos productos ALVA.
-- Subdominios independientes.
-- Métricas consolidadas del ecosistema.
+## Fase 7 — Expansión multiproducto 🧱 FUNDAMENTO PREPARADO
+- ✅ Registro de entornos por producto: producción, staging y desarrollo.
+- ✅ URLs de aplicación/administración, repositorio y referencia de Supabase.
+- ✅ Modelo central preparado para incorporar nuevos productos sin rediseñar ALVA Admin.
+- ⏸ Incorporación funcional del Producto 03 cuando queden definidos nombre, propósito e integración.
+- 🔄 Métricas consolidadas crecerán conforme exista información real.
 
 ## Pendientes visuales no bloqueantes
 - Crear favicon ALVA con fondo/círculo claro para evitar pérdida de contraste.
