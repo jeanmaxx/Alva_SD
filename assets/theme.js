@@ -28,3 +28,20 @@
     if (!localStorage.getItem(storageKey)) apply(event.matches ? 'dark' : 'light');
   });
 })();
+
+// Extensiones administrativas cargadas únicamente dentro de /admin/.
+(() => {
+  if (!location.pathname.includes('/admin')) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = './phase3plus.css';
+  document.head.appendChild(link);
+
+  window.addEventListener('load', () => {
+    if (document.querySelector('script[data-alva-ops]')) return;
+    const script = document.createElement('script');
+    script.src = './phase3plus.js';
+    script.dataset.alvaOps = 'true';
+    document.body.appendChild(script);
+  }, { once:true });
+})();
