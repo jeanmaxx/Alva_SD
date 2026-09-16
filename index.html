@@ -1,10 +1,16 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="ALVA Soluciones Digitales: CRM, TTD y productos digitales para empresas que quieren crecer con orden." />
+  <meta name="theme-color" content="#f7f7f5" />
+  <meta name="color-scheme" content="light dark" />
   <title>ALVA Soluciones Digitales</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/brand/isotipo-color.svg" />
+  <script>
+    (()=>{try{const saved=localStorage.getItem('alva-theme');const theme=saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=theme;}catch(_){}})();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,10 +19,16 @@
 <body>
   <header class="site-header">
     <a class="brand" href="#inicio" aria-label="ALVA Soluciones Digitales">
-      <img src="./assets/alva-mark.svg" alt="" />
-      <span class="brand-copy"><strong>ALVA</strong><small>Soluciones Digitales</small></span>
+      <span class="brand-mark">
+        <img class="theme-light-asset" src="./assets/brand/isotipo-color.svg" alt="" />
+        <img class="theme-dark-asset" src="./assets/brand/isotipo-color-dark.svg" alt="" />
+      </span>
+      <span class="brand-name"><img src="./assets/brand/logotipo.svg" alt="ALVA" /><small>Soluciones Digitales</small></span>
     </a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="nav">Menú</button>
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema" title="Cambiar tema"><span aria-hidden="true">◐</span></button>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="nav">Menú</button>
+    </div>
     <nav id="nav" class="site-nav">
       <a href="#soluciones">Soluciones</a>
       <a href="#metodo">Cómo trabajamos</a>
@@ -42,23 +54,24 @@
           <span>Control centralizado</span>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true">
+      <div class="hero-visual" aria-label="Identidad de ALVA Soluciones Digitales">
         <div class="hero-glow"></div>
-        <div class="hero-card hero-card-main">
-          <img src="./assets/alva-mark.svg" alt="" />
-          <strong>ALVA</strong>
+        <div class="hero-brand-card">
+          <img class="theme-light-asset hero-isotype" src="./assets/brand/isotipo-color.svg" alt="Isotipo de ALVA" />
+          <img class="theme-dark-asset hero-isotype" src="./assets/brand/isotipo-color-dark.svg" alt="Isotipo de ALVA" />
+          <img class="hero-wordmark" src="./assets/brand/logotipo.svg" alt="ALVA" />
           <span>Soluciones Digitales</span>
         </div>
-        <div class="hero-card hero-card-stat"><small>ECOSISTEMA</small><strong>3</strong><span>productos preparados</span></div>
-        <div class="hero-card hero-card-status"><i></i><span>Plataforma en crecimiento</span></div>
+        <div class="hero-chip hero-chip-top"><i></i><span>Ecosistema multiproducto</span></div>
+        <div class="hero-chip hero-chip-bottom"><b>03</b><span>arquitectura preparada para crecer</span></div>
       </div>
     </section>
 
     <section id="soluciones" class="section section-shell">
       <div class="section-heading">
         <div class="eyebrow">PORTAFOLIO</div>
-        <h2>Una plataforma, distintas soluciones.</h2>
-        <p>Cada producto funciona de manera independiente, pero todos forman parte del ecosistema de ALVA.</p>
+        <h2>Una marca, distintas soluciones.</h2>
+        <p>Cada producto funciona de manera independiente, pero comparte el mismo ecosistema administrativo de ALVA.</p>
       </div>
       <div class="product-grid">
         <article class="product-card featured">
@@ -104,7 +117,7 @@
         <h2>Un ecosistema pensado para empresas reales.</h2>
       </div>
       <div class="about-copy">
-        <p>ALVA nace para reunir productos digitales empresariales bajo una misma estructura tecnológica y una identidad común. Cada solución puede evolucionar de manera independiente, mientras la administración central conserva el control de clientes, servicios, licencias y crecimiento.</p>
+        <p>ALVA reúne productos digitales empresariales bajo una misma estructura tecnológica y una identidad común. Cada solución puede evolucionar de manera independiente, mientras la administración central conserva el control de clientes, servicios, licencias y crecimiento.</p>
         <div class="about-values"><span>Orden</span><span>Confianza</span><span>Innovación</span><span>Escalabilidad</span></div>
       </div>
     </section>
@@ -118,11 +131,15 @@
   </main>
 
   <footer class="site-footer section-shell">
-    <div class="brand footer-brand"><img src="./assets/alva-mark.svg" alt="" /><span class="brand-copy"><strong>ALVA</strong><small>Soluciones Digitales</small></span></div>
+    <a class="brand footer-brand" href="#inicio" aria-label="Volver al inicio">
+      <span class="brand-mark"><img class="theme-light-asset" src="./assets/brand/isotipo-color.svg" alt="" /><img class="theme-dark-asset" src="./assets/brand/isotipo-color-dark.svg" alt="" /></span>
+      <span class="brand-name"><img src="./assets/brand/logotipo.svg" alt="ALVA" /><small>Soluciones Digitales</small></span>
+    </a>
     <p>CRM · Automatización · Productos digitales</p>
     <small>© <span id="year"></span> ALVA Soluciones Digitales.</small>
   </footer>
 
+  <script src="./assets/theme.js"></script>
   <script src="./assets/site.js"></script>
 </body>
 </html>
