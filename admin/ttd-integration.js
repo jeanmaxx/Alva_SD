@@ -52,24 +52,17 @@
     if(!url||state.role?.slug!=='owner')return;
     const targetWindow=window.open('about:blank','alva-ttd-admin');
     if(!targetWindow){toast('El navegador bloqueó la ventana de TTD.',true);return}
-    try{
-      targetWindow.document.write('<title>Conectando con TTD…</title><body style="font-family:system-ui;display:grid;place-items:center;min-height:100vh;margin:0;background:#111316;color:#fff">Conectando con TTD…</body>');
-    }catch{}
+    try{targetWindow.document.write('<title>Conectando con TTD…</title><body style="font-family:system-ui;display:grid;place-items:center;min-height:100vh;margin:0;background:#111316;color:#fff">Conectando con TTD…</body>')}catch{}
     toast('Creando acceso seguro a TTD…');
     const {data,error}=await state.db.functions.invoke('alva-ttd-sso',{body:{target:'ttd-admin'}});
-    if(error||!data?.token_hash){
-      try{targetWindow.close()}catch{}
-      toast('No fue posible crear el acceso unificado a TTD.',true);
-      return;
-    }
+    if(error||!data?.token_hash){try{targetWindow.close()}catch{}toast('No fue posible crear el acceso unificado a TTD.',true);return}
     const target=new URL(url);
-    target.hash=`alva_sso=${encodeURIComponent(data.token_hash)}`;
+    const params=new URLSearchParams({alva_sso:data.token_hash,alva_sso_type:data.verification_type||'email'});
+    target.hash=params.toString();
     targetWindow.location.replace(target.toString());
   }
 
-  const wait=setInterval(()=>{
-    if(typeof state!=='undefined'&&state.user&&state.db){clearInterval(wait);load();}
-  },250);
+  const wait=setInterval(()=>{if(typeof state!=='undefined'&&state.user&&state.db){clearInterval(wait);load()}},250);
   setTimeout(()=>clearInterval(wait),15000);
 
   if(typeof openView==='function'){
