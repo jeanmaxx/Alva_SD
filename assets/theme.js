@@ -42,6 +42,12 @@
     const script = document.createElement('script');
     script.src = './phase3plus.js';
     script.dataset.alvaOps = 'true';
+    script.onload = () => {
+      const privacy = document.createElement('script');
+      privacy.src = './privacy.js';
+      privacy.dataset.alvaPrivacy = 'true';
+      document.body.appendChild(privacy);
+    };
     document.body.appendChild(script);
   }, { once:true });
 })();
