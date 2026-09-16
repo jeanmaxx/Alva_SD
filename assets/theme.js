@@ -48,7 +48,7 @@
       privacy.dataset.alvaPrivacy = 'true';
       privacy.onload = () => {
         const commercial = document.createElement('script');
-        commercial.src = './commercial-v2.js?v=20260916-1';
+        commercial.src = './commercial-v2.js?v=20260916-2';
         commercial.dataset.alvaCommercialV2 = 'true';
         document.body.appendChild(commercial);
       };
