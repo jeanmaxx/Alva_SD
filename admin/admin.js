@@ -1,12 +1,7 @@
 const labels = {
-  dashboard: 'Dashboard',
-  clients: 'Clientes / Empresas',
-  products: 'Productos y servicios',
-  subscriptions: 'Suscripciones / Licencias',
-  users: 'Usuarios y accesos',
-  billing: 'Cobranza',
-  support: 'Soporte',
-  settings: 'Configuración'
+  dashboard: 'Dashboard', clients: 'Clientes / Empresas', products: 'Productos y servicios',
+  subscriptions: 'Suscripciones / Licencias', users: 'Usuarios y accesos', billing: 'Cobranza',
+  support: 'Soporte', settings: 'Configuración'
 };
 
 const sidebar = document.querySelector('.sidebar');
