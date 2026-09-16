@@ -34,22 +34,22 @@
   if (!location.pathname.includes('/admin')) return;
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = './phase3plus.css';
+  link.href = './phase3plus.css?v=20260916-hotfix1';
   document.head.appendChild(link);
 
   window.addEventListener('load', () => {
     if (document.querySelector('script[data-alva-ops]')) return;
     const script = document.createElement('script');
-    script.src = './phase3plus.js';
+    script.src = './phase3plus.js?v=20260916-hotfix1';
     script.dataset.alvaOps = 'true';
     script.onload = () => {
       const privacy = document.createElement('script');
-      privacy.src = './privacy.js';
+      privacy.src = './privacy.js?v=20260916-hotfix1';
       privacy.dataset.alvaPrivacy = 'true';
       privacy.onload = () => {
         const commercial = document.createElement('script');
-        commercial.src = './commercial-v2.js?v=20260916-2';
-        commercial.dataset.alvaCommercialV2 = 'true';
+        commercial.src = './commercial-v3.js?v=20260916-hotfix1';
+        commercial.dataset.alvaCommercialV3 = 'true';
         document.body.appendChild(commercial);
       };
       document.body.appendChild(privacy);
