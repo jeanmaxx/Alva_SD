@@ -46,6 +46,12 @@
       const privacy = document.createElement('script');
       privacy.src = './privacy.js';
       privacy.dataset.alvaPrivacy = 'true';
+      privacy.onload = () => {
+        const commercial = document.createElement('script');
+        commercial.src = './commercial-v2.js?v=20260916-1';
+        commercial.dataset.alvaCommercialV2 = 'true';
+        document.body.appendChild(commercial);
+      };
       document.body.appendChild(privacy);
     };
     document.body.appendChild(script);
