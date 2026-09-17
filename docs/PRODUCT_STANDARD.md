@@ -32,6 +32,29 @@ ALVA Admin administra, entre otros:
 
 El panel administrativo de cada producto administra sus funciones internas, usuarios operativos, configuración y capacidades particulares.
 
+## Estándar visual administrativo ALVA
+
+Los productos de ALVA deben sentirse parte de la misma familia aunque tengan funciones distintas. La administración de TTD, CRM y productos futuros reutilizará el mismo lenguaje visual base de ALVA Admin.
+
+Elementos compartidos:
+
+- Manrope como tipografía principal de administración.
+- Navegación lateral o equivalente responsive.
+- Header superior compacto.
+- Cards, tablas, badges, inputs, modales y estados coherentes.
+- Tema claro y oscuro.
+- Espaciado, radios, bordes y jerarquía visual comunes.
+- Estados de carga, vacío, error y éxito consistentes.
+- Navegación por módulos y rutas humanas mediante `slug` cuando corresponda.
+
+Cada producto puede conservar un color de acento propio. ALVA mantiene grafito/ámbar; TTD utiliza azul marino/cian. La identidad pública de cada cliente no se modifica por este estándar administrativo.
+
+La fórmula de marca para productos será:
+
+**PANEL DE ADMINISTRACIÓN DE**  
+**[NOMBRE DEL PRODUCTO]**  
+*Una solución de ALVA Soluciones Digitales.*
+
 ## Plan funcional y condición comercial
 
 No se deben mezclar capacidades del producto con excepciones comerciales.
@@ -63,13 +86,28 @@ La estructura objetivo del CRM será:
 - `/admin/` — Administración SaaS del producto.
 - `/app/` — CRM operativo real.
 
+La administración del CRM deberá adoptar el estándar visual administrativo ALVA desde su primera versión formal.
+
 ## TTD
 
-La estructura objetivo de TTD será:
+La estructura objetivo de TTD es:
 
 - `/` — Landing comercial oficial.
 - `/demo/` — Demostración de tarjeta.
-- `/admin/` — Administración específica TTD.
+- `/admin/` — Home administrativo central TTD.
+- `/admin/personales/` — Tarjetas Digitales Personales.
+- `/admin/personales/<slug>` — Administración individual de tarjeta personal.
+- `/admin/barberias/` — Barberías.
+- `/admin/barberias/<slug>` — Administración individual de barbería.
+- `/admin/otros/` — Otros Negocios.
 - Rutas públicas de tarjetas — Experiencias de clientes.
+
+Nomenclatura vigente:
+
+- `Tarjetas Digitales Asesores` pasa a `Tarjetas Digitales Personales`.
+- `Estéticas y Barberías` pasa a `Barberías`.
+- `Otros Negocios` se conserva como vertical flexible y se ubica al final de la navegación.
+
+Las rutas heredadas pueden mantenerse temporalmente mediante redirecciones para evitar romper enlaces, QR o accesos existentes.
 
 La antigua URL comercial basada en `/otros/?negocio=tu-tarjeta-digital` puede mantenerse temporalmente por compatibilidad, pero la raíz del dominio es la URL comercial principal.
