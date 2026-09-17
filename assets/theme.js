@@ -38,6 +38,12 @@
   document.head.appendChild(link);
 
   window.addEventListener('load', () => {
+    if (document.querySelector('script[data-alva-datemx]')) return;
+    const dateMx = document.createElement('script');
+    dateMx.src = './date-mx.js?v=20260916-1';
+    dateMx.dataset.alvaDatemx = 'true';
+    document.body.appendChild(dateMx);
+
     if (document.querySelector('script[data-alva-ops]')) return;
     const script = document.createElement('script');
     script.src = './phase3plus.js?v=20260916-hotfix1';
