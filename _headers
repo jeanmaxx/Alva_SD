@@ -6,3 +6,6 @@
 
 /admin/*
   X-Robots-Tag: noindex, nofollow, noarchive
+
+/assets/brand/favicon-alva.png
+  Cache-Control: no-cache, no-store, must-revalidate
