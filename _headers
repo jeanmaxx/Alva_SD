@@ -7,5 +7,9 @@
 /admin/*
   X-Robots-Tag: noindex, nofollow, noarchive
 
-/assets/brand/favicon-alva.png
+/assets/brand/favicon-alva-official-20260917.png
+  Cache-Control: no-cache, no-store, must-revalidate
+/favicon.png
+  Cache-Control: no-cache, no-store, must-revalidate
+/apple-touch-icon.png
   Cache-Control: no-cache, no-store, must-revalidate
