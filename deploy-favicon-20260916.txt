@@ -1,1 +1,0 @@
-Forzar despliegue Cloudflare del favicon ALVA actualizado. 2026-09-16
