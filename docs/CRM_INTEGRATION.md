@@ -21,14 +21,18 @@ Registrar ALVA CRM dentro del control central de ALVA sin trasladar ni duplicar 
 - Alias C&A: `https://crm-alvasd.pages.dev/C&ACRM/`
 - Alias colaboradores C&A: `https://crm-alvasd.pages.dev/C&ACRM/Colaboradores/`
 
-## Estado durante Fase F
-El entorno `production` del producto CRM se registra en `alva_product_environments` con estado **planned**. Las URLs canónicas objetivo quedan documentadas, pero ALVA no las considera activas todavía.
+## Estado productivo — Fase G
+El corte productivo quedó completado el **19/09/2026**.
 
-Para pruebas se usa el preview de la migración:
-- `https://migration-alva-crm-phase-b.crm-alvasd.pages.dev/`
-- `https://migration-alva-crm-phase-b.crm-alvasd.pages.dev/admin/`
+- `alva_product_environments.environment = production`
+- estado: **active**
+- `cutover_pending = false`
+- página oficial: `https://crm-alvasd.pages.dev/`
+- Control Center: `https://crm-alvasd.pages.dev/admin/`
+- `platform-admin` productivo utiliza URLs canónicas multi-tenant.
+- Los previews de migración se conservan únicamente como referencia técnica y respaldo del proceso.
 
-El corte a producción pertenece a la **Fase G**, después del QA completo. En ese momento el entorno se cambia a `active` y se sincronizan los accesos de producto/administración.
+La operación continúa separada: ALVA Core registra el producto y su relación comercial/técnica; ALVA CRM mantiene los datos y procesos de cada tenant en su propio Supabase.
 
 ## Repositorio
 `https://github.com/jeanmaxx/CyA_CRM`
