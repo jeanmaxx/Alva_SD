@@ -7,7 +7,7 @@ Este repositorio es el núcleo web de ALVA: sitio público, catálogo de solucio
 
 ## Productos iniciales
 - **TTD** — producto activo y primer producto conectado a ALVA Admin.
-- **CRM** — producto activo; integración ALVA Core preparada en Fase F. El corte productivo queda para Fase G.
+- **CRM** — producto activo e integrado con ALVA Core; corte productivo completado en Fase G.
 - **Producto 03** — reservado para la siguiente plataforma.
 
 ## Arquitectura prevista
@@ -54,7 +54,7 @@ TTD conserva su panel operativo y ALVA concentra el control comercial. Ya están
 Consulta `docs/TTD_INTEGRATION.md` para el detalle.
 
 ### Segunda integración de producto — CRM
-ALVA CRM queda registrado como producto con infraestructura independiente. ALVA conserva únicamente la referencia comercial/técnica; la operación de tenants, prospectos, clientes, agenda y contratos permanece en el Supabase propio del CRM. Durante Fase F el entorno se mantiene `planned` y usa el preview de migración; la activación corresponde a Fase G.
+ALVA CRM queda registrado como producto con infraestructura independiente. ALVA conserva únicamente la referencia comercial/técnica; la operación de tenants, prospectos, clientes, agenda y contratos permanece en el Supabase propio del CRM. Desde Fase G el entorno productivo está `active` y ALVA utiliza las URLs canónicas oficiales del CRM.
 
 Consulta `docs/CRM_INTEGRATION.md` para el detalle.
 
