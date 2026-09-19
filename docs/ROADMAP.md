@@ -76,7 +76,8 @@ Esta arquitectura es deliberadamente económica para la etapa inicial y queda pr
 - ✅ Modelo central preparado para incorporar nuevos productos sin rediseñar ALVA Admin.
 - ✅ Patrón de integración validado con TTD: ALVA administra negocio; el producto conserva su operación.
 - ✅ CRM registrado en ALVA Core con repositorio, Supabase independiente y URLs canónicas objetivo.
-- ✅ Fase F: panel de integración CRM preparado sin consultar datos operativos del producto.\n- ✅ Fase G: corte productivo completado; routing canónico, backend y registro ALVA Core activos.
+- ✅ Fase F: panel de integración CRM preparado sin consultar datos operativos del producto.
+- ✅ Fase G: corte productivo completado; routing canónico, backend y registro ALVA Core activos.
 - ✅ CRM `production / active`; ALVA Core usa las URLs canónicas oficiales y mantiene aislada la operación del producto.
 - ⏸ Incorporación funcional del Producto 03 cuando queden definidos nombre, propósito e integración.
 - 🔄 Métricas consolidadas crecerán conforme exista información real.
