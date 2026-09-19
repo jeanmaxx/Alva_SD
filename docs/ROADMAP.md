@@ -74,7 +74,10 @@ Esta arquitectura es deliberadamente económica para la etapa inicial y queda pr
 - ✅ Registro de entornos por producto: producción, staging y desarrollo.
 - ✅ URLs de aplicación/administración, repositorio y referencia de Supabase.
 - ✅ Modelo central preparado para incorporar nuevos productos sin rediseñar ALVA Admin.
-- ✅ Patrón de integración validado con TTD: ALVA administra negocio; el producto conserva su operación.\n- ✅ CRM registrado en ALVA Core con repositorio, Supabase independiente y URLs canónicas objetivo.\n- ✅ Fase F: panel de integración CRM preparado sin consultar datos operativos del producto.\n- ⏸ CRM permanece `planned`; la activación de producción y actualización final de accesos se ejecutan en Fase G.
+- ✅ Patrón de integración validado con TTD: ALVA administra negocio; el producto conserva su operación.
+- ✅ CRM registrado en ALVA Core con repositorio, Supabase independiente y URLs canónicas objetivo.
+- ✅ Fase F: panel de integración CRM preparado sin consultar datos operativos del producto.
+- ⏸ CRM permanece `planned`; la activación de producción y actualización final de accesos se ejecutan en Fase G.
 - ⏸ Incorporación funcional del Producto 03 cuando queden definidos nombre, propósito e integración.
 - 🔄 Métricas consolidadas crecerán conforme exista información real.
 
